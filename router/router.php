@@ -6,6 +6,7 @@ $routes =
 	[
 		'/' => 'controllers/index.php',
 		'/claims' => 'controllers/claims.php',
+		'/claim' => 'controllers/claim.php',
 	];
 
 function routeToController($uri, $routes)

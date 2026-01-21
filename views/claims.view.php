@@ -1,5 +1,4 @@
 <?php require 'partials/head.php'; ?>
-
 	<div>
 		<ul>
 			<?php foreach ($claims as $claim) { ?>
@@ -11,5 +10,4 @@
 			<?php } ?>
 		</ul>
 	</div>
-
 <?php require 'partials/footer.php'; ?>
