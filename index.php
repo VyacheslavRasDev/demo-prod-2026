@@ -1,7 +1,7 @@
 <?php
 
-require 'php_interface/functions.php';
-require 'router/router.php';
+require_once 'php_interface/functions.php';
+require_once 'router/router.php';
 require 'class/Database.php';
 
 $config = require 'config.php';

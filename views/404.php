@@ -2,7 +2,6 @@
 
 	<div>
 		<p>404</p>
-
 	</div>
 
 <?php require 'partials/footer.php'; ?>
