@@ -1,8 +1,7 @@
 <?php require 'partials/head.php'; ?>
 
 <div>
-	<p>hello!</p>
-	<?php dd($claims); ?>
+	<p>Welcome!</p>
 </div>
 
 <?php require 'partials/footer.php'; ?>
