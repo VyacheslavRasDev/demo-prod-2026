@@ -1,5 +1,5 @@
 <?php require 'partials/head.php'; ?>
 	<div>
-	<?= $claim['payment_method']; ?>
+	<?= $claim['description']; ?>
 	</div>
 <?php require 'partials/footer.php'; ?>

@@ -4,10 +4,15 @@
 			<?php foreach ($claims as $claim) { ?>
 				<li>
 					<a href="/claim?id=<?=$claim['id']?>">
-						<?= $claim['payment_method']; ?>
+						<?= $claim['description']; ?>
 					</a>
 				</li>
 			<?php } ?>
 		</ul>
+	</div>
+	<div>
+		<a href="/claim-create">
+			Create new claim
+		</a>
 	</div>
 <?php require 'partials/footer.php'; ?>
