@@ -4,7 +4,7 @@
 			<?php foreach ($claims as $claim) { ?>
 				<li>
 					<a href="/claim?id=<?=$claim['id']?>">
-						<?= $claim['description']; ?>
+						<?= htmlspecialchars($claim['description']); ?>
 					</a>
 				</li>
 			<?php } ?>

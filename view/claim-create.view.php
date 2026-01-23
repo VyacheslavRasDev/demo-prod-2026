@@ -2,8 +2,13 @@
 
 	<div class="container">
 		<form action="/claim-create" class="form-container" method="post">
-			<label for="payment_method">Описание</label>
-			<textarea name="payment_method" id="" cols="30" rows="10"></textarea>
+			<label for="description">Описание</label>
+			<textarea name="description" id="" cols="30" rows="10" placeholder="put you`re description there"><?= $_POST['description'] ?? '' ?></textarea>
+			<?php if (isset($errors['description'])) { ?>
+				<p style="color: red">
+					<?= $errors['description'] ?>
+				</p>
+			<?php } ?>
 			<button class="submit">Отправить</button>
 		</form>
 	</div>
