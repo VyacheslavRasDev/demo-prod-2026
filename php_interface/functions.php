@@ -11,13 +11,13 @@ function dd($data)
 
 function base_path(string $path = '')
 : string {
-	return BASE_PATH . '/' . ltrim($path, '/');
+	return BASE_PATH . $path;
 }
 
 function view($path, $params = [])
 {
 	extract($params);
-	require base_path('view/' . $path);
+	require base_path('/view/' . $path);
 }
 
 

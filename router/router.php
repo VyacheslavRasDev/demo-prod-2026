@@ -26,7 +26,7 @@
 function routeToController(string $uri, array $routes): void
 {
 	if (array_key_exists($uri, $routes)) {
-		require base_path($routes[$uri]);
+		require $routes[$uri];
 		return;
 	}
 
@@ -40,8 +40,7 @@ function abort(int $code = 404): void
 	die();
 }
 
-$routes = require base_path('router/web.php');
-
+$routes = require BASE_PATH . 'router/web.php';
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 routeToController($uri, $routes);
