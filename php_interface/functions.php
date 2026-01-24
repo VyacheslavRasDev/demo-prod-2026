@@ -1,10 +1,24 @@
 <?php
 
-function dd($data) {
+function dd($data)
+{
 	echo "<pre>";
-	print_r($data);
+	var_dump($data);
 	echo "</pre>";
 
 	die();
 }
+
+function base_path(string $path = '')
+: string {
+	return BASE_PATH . '/' . ltrim($path, '/');
+}
+
+function view($path, $params = [])
+{
+	extract($params);
+	require base_path('view/' . $path);
+}
+
+
 

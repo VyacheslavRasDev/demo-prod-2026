@@ -1,4 +1,4 @@
-<?php require 'partials/head.php'; ?>
+<?php require 'view/partials/head.php'; ?>
 	<div>
 		<ul>
 			<?php foreach ($claims as $claim) { ?>
@@ -11,8 +11,8 @@
 		</ul>
 	</div>
 	<div>
-		<a href="/claim-create">
+		<a href="/claim/create">
 			Create new claim
 		</a>
 	</div>
-<?php require 'partials/footer.php'; ?>
+<?php require 'view/partials/footer.php'; ?>

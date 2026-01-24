@@ -1,3 +1,3 @@
 <?php
 
-require_once 'view/index.view.php';
+view('index.view.php');

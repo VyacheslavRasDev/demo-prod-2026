@@ -1,16 +1,15 @@
 <?php
 
+require_once 'Core/Validator.php';
+
 $config = require 'config.php';
 $db     = new Database($config['database']);
 
+$errors = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$errors = [];
 
-	if (empty(trim($_POST['description']))) {
-		$errors['description'] = 'Description is required';
-	}
-
-	if (strlen(trim($_POST['description'])) > 255) {
+	if (!Validator::string($_POST['description'])) {
 		$errors['description'] = 'Description is too long';
 	}
 
@@ -21,4 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 }
 
-require_once 'view/claim-create.view.php';
+view('claims/create.view.php', [
+	'errors' => $errors,
+]);
