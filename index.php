@@ -2,13 +2,14 @@
 
 const BASE_PATH = __DIR__ . '/';
 
-require_once BASE_PATH . 'php_interface/functions.php';
+require_once BASE_PATH . 'Core/functions.php';
 
 spl_autoload_register(function ($class) {
-	require BASE_PATH . 'Core/' . $class . '.php';
+	$class = str_replace('\\', '/', $class);
+	require base_path("$class.php");
 });
 
-require_once BASE_PATH . 'router/router.php';
+require_once BASE_PATH . 'Core/router.php';
 
 
 

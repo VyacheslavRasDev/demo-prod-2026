@@ -1,5 +1,9 @@
 <?php
 
+namespace Core;
+
+use PDO;
+
 class Database
 {
 	public $connection;
@@ -15,23 +19,24 @@ class Database
 		]);
 	}
 
-	public function query($query, $params = []): Database
-	{
+	public function query($query, $params = [])
+	: Database {
 		$this->statement = $this->connection->prepare($query);
 		$this->statement->execute($params);
 
 		return $this;
 	}
 
-	public function get() {
+	public function get()
+	{
 		return $this->statement->fetchAll();
 	}
 
 	public function find()
 	{
-		$result =  $this->statement->fetch();
+		$result = $this->statement->fetch();
 
-		if(! $result){
+		if (!$result) {
 			abort();
 		}
 

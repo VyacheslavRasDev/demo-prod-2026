@@ -40,7 +40,7 @@ function abort(int $code = 404): void
 	die();
 }
 
-$routes = require BASE_PATH . 'router/web.php';
+$routes = require BASE_PATH . 'routers/web.php';
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 routeToController($uri, $routes);
