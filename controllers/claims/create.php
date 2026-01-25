@@ -18,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			'description' => $_POST['description'],
 		]);
 	}
+	header('Location: /claims');
+	exit();
 }
 
 view('claims/create.view.php', [

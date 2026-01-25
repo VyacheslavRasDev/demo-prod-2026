@@ -10,6 +10,7 @@ $claim = $db->query("SELECT * FROM claims where id = :id", [
 ])->find();
 
 
+
 view('claims/claim.view.php', [
 	'claim' => $claim,
 ]);

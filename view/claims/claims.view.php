@@ -11,8 +11,11 @@
 		</ul>
 	</div>
 	<div>
-		<a href="/claim/create">
+		<a href="/claims/create">
 			Create new claim
 		</a>
 	</div>
+<div>
+	<a href="/">On main page</a>
+</div>
 <?php require 'view/partials/footer.php'; ?>
