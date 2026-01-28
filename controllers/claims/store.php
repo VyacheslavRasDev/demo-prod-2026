@@ -4,8 +4,7 @@ use Core\Database;
 use Core\Validator;
 use Core\App;
 
-
-$db = App::resolve(Database::class);
+$db     = App::resolve(Database::class);
 $errors = [];
 
 if (!Validator::string($_POST['description'])) {

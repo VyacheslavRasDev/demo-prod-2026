@@ -9,6 +9,8 @@ $claim = $db->query("SELECT * FROM claims where id = :id", [
 	':id' => $_GET['id'],
 ])->find();
 
-view('claims/claim.view.php', [
-	'claim' => $claim,
+
+view('claims/edit.view.php', [
+	'errors' => [],
+	'claim' => $claim
 ]);

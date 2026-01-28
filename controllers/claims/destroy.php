@@ -5,7 +5,6 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-
 $db->query("SELECT * FROM claims where id = :id", [
 	':id' => $_POST['id'],
 ]);
