@@ -10,9 +10,12 @@ spl_autoload_register(function ($class) {
 	require base_path("$class.php");
 });
 
+require_once base_path('view/bootstrap.php');
+
 $router = new Router();
 
 $routes = require base_path('routers/web.php');
+
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];

@@ -1,8 +1,9 @@
 <?php
+use Core\App;
 use Core\Database;
 
-$config = require_once 'config.php';
-$db = new Database($config['database']);
+$db = App::resolve(Database::class);
+
 
 $claims = $db->query('SELECT * FROM claims')->get();
 

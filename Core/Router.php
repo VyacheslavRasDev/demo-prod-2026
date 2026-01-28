@@ -4,7 +4,7 @@ namespace Core;
 
 class Router
 {
-	protected $routes = [];
+	public array $routes = [];
 
 	public function get($uri, $controller)
 	{
