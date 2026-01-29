@@ -36,9 +36,9 @@ class Database
 	{
 		$result = $this->statement->fetch();
 
-		if (!$result) {
-			abort();
-		}
+//		if (!$result) {
+//			abort();
+//		}
 
 		return $result;
 	}

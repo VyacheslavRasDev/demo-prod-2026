@@ -7,6 +7,7 @@ use Core\App;
 $db     = App::resolve(Database::class);
 $errors = [];
 
+
 if (!Validator::string($_POST['description'])) {
 	$errors['description'] = 'Description is too long';
 }

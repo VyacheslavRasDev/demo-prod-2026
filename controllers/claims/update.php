@@ -6,7 +6,6 @@ use Core\Validator;
 
 $db = App::resolve(Database::class);
 
-// find the corresponding note
 $claim = $db->query('select * from claims where id = :id', [
 	'id' => $_POST['id']
 ])->find();
@@ -14,7 +13,7 @@ $claim = $db->query('select * from claims where id = :id', [
 $errors = [];
 
 if (! Validator::string($_POST['description'])) {
-	$errors['body'] = 'A body of no more than 1,000 characters is required.';
+	$errors['description'] = 'A body of no more than 1,000 characters is required.';
 }
 
 if (count($errors)) {
