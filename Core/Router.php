@@ -2,6 +2,10 @@
 
 namespace Core;
 
+use Core\Middleware\Auth;
+use Core\Middleware\Guest;
+use Core\Middleware\Middleware;
+
 class Router
 {
 	public array $routes = [];
@@ -34,6 +38,7 @@ class Router
 	public function only($key)
 	{
 		$this->routes[array_key_last($this->routes)]['middleware'] = $key;
+
 		return $this;
 	}
 
@@ -41,19 +46,17 @@ class Router
 	{
 		foreach ($this->routes as $route) {
 			if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-				if($route['middleware'] === 'guest'){
-					if ($_SESSION['user'] ?? false) {
-						header('Location: /');
-						exit();
-					}
+				if ($route['middleware']) {
+					Middleware::resolve($route['middleware']);
 				}
 
-				if ($route['middleware'] === 'auth') {
-					if (! $_SESSION['user'] ?? false) {
-						header('Location: /');
-						exit();
-					}
-				}
+				//				if ($route['middleware'] === 'guest') {
+				//					(new Guest)->handle();
+				//				}
+				//
+				//				if ($route['middleware'] === 'auth') {
+				//					(new Auth)->handle();
+				//				}
 
 				return require base_path($route['controller']);
 			}
@@ -62,13 +65,15 @@ class Router
 		$this->abort();
 	}
 
-	protected function add($method, $uri, $controller){
+	protected function add($method, $uri, $controller)
+	{
 		$this->routes[] = [
 			'uri'        => $uri,
 			'controller' => $controller,
 			'method'     => $method,
-			'middleware'     => null,
+			'middleware' => null,
 		];
+
 		return $this;
 	}
 
