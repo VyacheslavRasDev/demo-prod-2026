@@ -1,18 +1,22 @@
 <?php
 
-$router->get('/', 'controllers/index.php');
+$router->get('/', 'index.php');
 
-$router->get('/register', 'controllers/registration/create.php')->only('guest');
-$router->post('/register', 'controllers/registration/store.php');
+$router->get('/register', 'registration/create.php')->only('guest');
+$router->post('/register', 'registration/store.php')->only('guest');
 
-$router->get('/claims', 'controllers/claims/index.php')->only('auth');
-$router->get('/claim', 'controllers/claims/claim.php');
-$router->get('/claims/create', 'controllers/claims/create.php');
-$router->get('/claim/edit', 'controllers/claims/edit.php');
+$router->get('/session', 'session/create.php')->only('guest');
+$router->post('/session', 'session/store.php')->only('guest');
+$router->delete('/session', 'session/destroy.php')->only('auth');
 
-$router->post('/claims', 'controllers/claims/store.php');
-$router->post('/claims/create', 'controllers/claims/create.php');
+$router->get('/claims', 'claims/index.php')->only('auth');
+$router->get('/claim', 'claims/claim.php')->only('auth');
+$router->get('/claims/create', 'claims/create.php')->only('auth');
+$router->get('/claim/edit', 'claims/edit.php')->only('auth');
 
-$router->patch('/claim', 'controllers/claims/update.php');
-$router->delete('/claim', 'controllers/claims/destroy.php');
+$router->post('/claims', 'claims/store.php')->only('auth');
+$router->post('/claims/create', 'claims/create.php')->only('auth');
+
+$router->patch('/claim', 'claims/update.php')->only('auth');
+$router->delete('/claim', 'claims/destroy.php')->only('auth');
 

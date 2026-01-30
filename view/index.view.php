@@ -1,24 +1,32 @@
 <?php require 'partials/head.php'; ?>
-
 	<div>
 		<p>Welcome!</p>
+	</div>
+<?php if ($_SESSION['user'] ?? false) { ?>
+	<div>
 		<a href="/claims">
 			Show claims
 		</a>
 	</div>
-<?php if ($_SESSION['user'] ?? false) { ?>
 	<div>
-		<a href="/login">
-			Login
-		</a>
+		<p>Hi, <?= $_SESSION['user']['name'] ?></p>
 	</div>
+	<form action="/session" method="post">
+		<input type="hidden" name="_method" value="DELETE">
+		<button type="submit">Log out</button>
+	</form>
 <?php } else { ?>
 	<div>
 		<a href="/register">
-			Create account!
+			Register
 		</a>
 	</div>
-<?php }  ?>
+	<div>
+		<a href="/session">
+			Login
+		</a>
+	</div>
+<?php } ?>
 
 
 <?php require 'partials/footer.php'; ?>
