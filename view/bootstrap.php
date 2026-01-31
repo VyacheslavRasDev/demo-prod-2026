@@ -4,9 +4,6 @@ use Core\App;
 use Core\Container;
 use Core\Database;
 
-if (session_status() === PHP_SESSION_NONE) {
-	session_start();
-}
 
 $container = new Container();
 

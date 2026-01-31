@@ -1,22 +1,28 @@
 <?php
 
-use Core\Database;
-use Core\Validator;
-use Core\App;
+use Core\Authenticator;
 use Http\Forms\LoginForm;
 
-$db = App::resolve(Database::class);
+$form     = LoginForm::validate($attributes = [
+	'email'    => $_POST['email'],
+	'password' => $_POST['password'],
+]);
+$signedIn = (new Authenticator)->attempt($attributes['email'], $attributes['password']);
 
-$email    = $_POST['email'];
-$password = $_POST['password'];
-
-$form = new LoginForm();
-
-if (! $form->validate($email, $password)) {
-		return view('session/create.view.php', [
-			'errors' => $form->errors()
-		]);
+if (!$signedIn) {
+	$form->error('email', 'Wrong email or password')->throw();
 }
+redirect('/');
+
+
+
+
+//return view('session/create.view.php', [
+//	'errors' => $form->errors(),
+//	'email'  => $email
+//]);
+
+//$db = App::resolve(Database::class);
 
 //$errors = [];
 //
@@ -36,36 +42,36 @@ if (! $form->validate($email, $password)) {
 //	exit();
 //}
 
-$user = $db->query('select name, email, password from users where email = :email', [
-	'email' => $email
-])->find();
-
-$name = $user['name'];
-
-if (!$user) {
-	return view('session/create.view.php', [
-		'errors' => [
-			'email' => 'User not found'
-		]
-	]);
-
-	exit();
-}
-
-if (password_verify($password, $user['password'])) {
-	login([
-		'email' => $email,
-		'name'  => $name
-	]);
-
-	header('Location: /');
-	exit();
-}
-
-return view('session/create.view.php', [
-	'errors' => [
-		'email' => 'User not found and password'
-	],
-	'email' => $email
-]);
+//$user = $db->query('select name, email, password from users where email = :email', [
+//	'email' => $email
+//])->find();
+//
+//$name = $user['name'];
+//
+//if (!$user) {
+//	return view('session/create.view.php', [
+//		'errors' => [
+//			'email' => 'User not found'
+//		]
+//	]);
+//
+//	exit();
+//}
+//
+//if (password_verify($password, $user['password'])) {
+//	login([
+//		'email' => $email,
+//		'name'  => $name
+//	]);
+//
+//	header('Location: /');
+//	exit();
+//}
+//
+//return view('session/create.view.php', [
+//	'errors' => [
+//		'email' => 'User not found and password'
+//	],
+//	'email' => $email
+//]);
 

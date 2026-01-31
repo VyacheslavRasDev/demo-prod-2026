@@ -1,9 +1,11 @@
 <?php
 
+use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 use Core\App;
 
+$auth = new Authenticator();
 $db     = App::resolve(Database::class);
 $errors = [];
 
@@ -36,9 +38,10 @@ if (!empty($errors)) {
 	exit();
 }
 
-$user = $db->query('select email from users where email = :email', [
+$user = $db->query('select name, email from users where email = :email', [
 	'email' => $email
 ])->find();
+
 
 
 if ($user) {
@@ -52,8 +55,9 @@ if ($user) {
 		'password' => password_hash($password, PASSWORD_DEFAULT)
 	]);
 
-	login([
-		'email' => $email,
+	$auth->login([
+		'email'    => $email,
+		'name'     => $name,
 	]);
 
 	header('Location: /');
